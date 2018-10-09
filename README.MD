@@ -1,3 +1,7 @@
+# Link download:
+
+https://github.com/haison8x/hack-royal-revolt-2/tree/master/Distribution
+
 # How to use this hack:
 1. Open Royal Revolt 2
 2. Wait until Royal Revolt 2 connected to the server
