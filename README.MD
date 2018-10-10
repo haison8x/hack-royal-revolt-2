@@ -1,8 +1,7 @@
 # Hack Royal Revolt 2
 
-This tool can hack 2 spells: Toxic Cloud and Stun
+This tool can hack Toxic Cloud
 - Toxic Slow Duration: 120 seconds
-- Stun Duration: 120 seconds
 
 # Link download:
 

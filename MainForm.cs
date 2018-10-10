@@ -20,12 +20,7 @@ namespace HackRR2
         private GameState CreateHackState()
         {
             var gameState = new GameState();
-            gameState.ToxicSlowDuration = 120f;
-            for (var i = 0; i < Level.StunLevelCount; i++)
-            {
-                gameState.StunDuration[i] = 120f;
-            }
-
+            gameState.ToxicSlowDuration = 120f;           
             return gameState;
         }
 
@@ -65,13 +60,6 @@ namespace HackRR2
             using (var memoryAccess = new MemoryAccess())
             {
                 gameState.ToxicSlowDuration = memoryAccess.ReadFloat(GameOffsets.ToxicSlowDuration);
-
-                var stunDurationAddress = memoryAccess.ReadAddress(GameOffsets.StunDuration);
-                for (var i = 0; i < Level.StunLevelCount; i++)
-                {
-                    var address = stunDurationAddress + i * 0x190;
-                    gameState.StunDuration[i] = memoryAccess.ReadFloat(address);
-                }
             }
 
             return gameState;
@@ -82,13 +70,6 @@ namespace HackRR2
             using (var memoryAccess = new MemoryAccess())
             {
                 memoryAccess.WriteFloat(GameOffsets.ToxicSlowDuration, gameState.ToxicSlowDuration);
-
-                var stunDurationAddress = memoryAccess.ReadAddress(GameOffsets.StunDuration);
-                for (var i = 0; i < Level.StunLevelCount; i++)
-                {
-                    var address = stunDurationAddress + i * 0x190;
-                    memoryAccess.WriteFloat(address, gameState.StunDuration[i]);
-                }
             }
         }
     }

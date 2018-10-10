@@ -75,7 +75,7 @@
             this.Controls.Add(this.HackButton);
             this.Controls.Add(this.RecordButton);
             this.Name = "MainForm";
-            this.Text = "Hack Toxic & Stun ";
+            this.Text = "Hack Toxic";
             this.ResumeLayout(false);
 
         }
