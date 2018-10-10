@@ -14,19 +14,20 @@ namespace HackRR2
             InitializeComponent();
 
             originalState = new GameState();
-            hackState = new GameState();
-            hackState.ToxicSlowDuration = 300f;
-            for (var i = 0; i < Level.ArcherLevelCount; i++)
-            {
-                hackState.ArcherDamage[i] = 100000f;
-            }
-
-            for (var i = 0; i < Level.StunLevelCount; i++)
-            {
-                hackState.StunDuration[i] = 300f;
-            }
+            hackState = CreateHackState();
         }
 
+        private GameState CreateHackState()
+        {
+            var gameState = new GameState();
+            gameState.ToxicSlowDuration = 120f;
+            for (var i = 0; i < Level.StunLevelCount; i++)
+            {
+                gameState.StunDuration[i] = 120f;
+            }
+
+            return gameState;
+        }
 
         private void RecordButtonClick(object sender, EventArgs e)
         {
@@ -35,7 +36,7 @@ namespace HackRR2
             HackButton.Enabled = true;
         }
 
-        
+
 
         private void HackButtonClick(object sender, EventArgs e)
         {
@@ -65,13 +66,6 @@ namespace HackRR2
             {
                 gameState.ToxicSlowDuration = memoryAccess.ReadFloat(GameOffsets.ToxicSlowDuration);
 
-                var archerDamageAddress = memoryAccess.ReadAddress(GameOffsets.ArcherDamage);
-                for (var i = 0; i < Level.ArcherLevelCount; i++)
-                {
-                    var address = archerDamageAddress + i * 0x190;
-                    gameState.ArcherDamage[i] = memoryAccess.ReadFloat(address);
-                }
-
                 var stunDurationAddress = memoryAccess.ReadAddress(GameOffsets.StunDuration);
                 for (var i = 0; i < Level.StunLevelCount; i++)
                 {
@@ -88,12 +82,6 @@ namespace HackRR2
             using (var memoryAccess = new MemoryAccess())
             {
                 memoryAccess.WriteFloat(GameOffsets.ToxicSlowDuration, gameState.ToxicSlowDuration);
-                var archerDamageAddress = memoryAccess.ReadAddress(GameOffsets.ArcherDamage);
-                for (var i = 0; i < Level.ArcherLevelCount; i++)
-                {
-                    var address = archerDamageAddress + i * 0x190;
-                    memoryAccess.WriteFloat(address, gameState.ArcherDamage[i]);
-                }
 
                 var stunDurationAddress = memoryAccess.ReadAddress(GameOffsets.StunDuration);
                 for (var i = 0; i < Level.StunLevelCount; i++)
