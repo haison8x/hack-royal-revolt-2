@@ -66,7 +66,6 @@
             // HackSpeedOption
             // 
             this.HackSpeedOption.AutoSize = true;
-            this.HackSpeedOption.Enabled = false;
             this.HackSpeedOption.Location = new System.Drawing.Point(230, 19);
             this.HackSpeedOption.Name = "HackSpeedOption";
             this.HackSpeedOption.Size = new System.Drawing.Size(86, 17);
@@ -77,7 +76,6 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Enabled = false;
             this.label3.Location = new System.Drawing.Point(24, 77);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 13);
@@ -87,7 +85,6 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Enabled = false;
             this.label2.Location = new System.Drawing.Point(24, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
@@ -97,7 +94,6 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Enabled = false;
             this.label4.Location = new System.Drawing.Point(24, 23);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 13);
@@ -106,7 +102,6 @@
             // 
             // MoveSpeedNumber
             // 
-            this.MoveSpeedNumber.Enabled = false;
             this.MoveSpeedNumber.Location = new System.Drawing.Point(104, 73);
             this.MoveSpeedNumber.Name = "MoveSpeedNumber";
             this.MoveSpeedNumber.Size = new System.Drawing.Size(120, 20);
@@ -119,7 +114,6 @@
             // 
             // AttackRateNumber
             // 
-            this.AttackRateNumber.Enabled = false;
             this.AttackRateNumber.Location = new System.Drawing.Point(104, 45);
             this.AttackRateNumber.Name = "AttackRateNumber";
             this.AttackRateNumber.Size = new System.Drawing.Size(120, 20);
@@ -132,7 +126,6 @@
             // 
             // AttackRangeNumber
             // 
-            this.AttackRangeNumber.Enabled = false;
             this.AttackRangeNumber.Location = new System.Drawing.Point(104, 19);
             this.AttackRangeNumber.Name = "AttackRangeNumber";
             this.AttackRangeNumber.Size = new System.Drawing.Size(120, 20);
@@ -159,6 +152,7 @@
             this.Controls.Add(this.HackButton);
             this.Name = "MainForm";
             this.Text = "Hack Toxic";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.MoveSpeedNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AttackRateNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AttackRangeNumber)).EndInit();

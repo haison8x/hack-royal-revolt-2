@@ -175,15 +175,15 @@ namespace HackRR2
                     var armyType = ReadInt32(handle, currentAddress + 0x6C);
                     if (armyType == 0)
                     {
-                        WriteFloat(handle, currentAddress + 0x6AC, range);
-                        WriteFloat(handle, currentAddress + 0x6B0, rate);
-                        WriteFloat(handle, currentAddress + 0x69C, speed);
+                        WriteFloat(handle, currentAddress + 0x71C, range);
+                        WriteFloat(handle, currentAddress + 0x720, rate);
+                        WriteFloat(handle, currentAddress + 0x70C, speed);
                     }
                     else
                     {
-                        WriteFloat(handle, currentAddress + 0x6AC, 0.001f);
-                        WriteFloat(handle, currentAddress + 0x6B0, 0.001f);
-                        WriteFloat(handle, currentAddress + 0x69C, 0.1f);
+                        WriteFloat(handle, currentAddress + 0x71C, 0.001f);
+                        WriteFloat(handle, currentAddress + 0x720, 0.001f);
+                        WriteFloat(handle, currentAddress + 0x70C, 0.1f);
                     }
                 }
             }

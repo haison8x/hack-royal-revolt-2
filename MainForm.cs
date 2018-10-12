@@ -16,6 +16,8 @@ namespace HackRR2
 
         private MemoryAccess memoryAccess;
 
+        private bool running = true;
+
         public MainForm()
         {
             InitializeComponent();
@@ -23,7 +25,7 @@ namespace HackRR2
             originalState = new GameState();
             hackState = CreateHackState();
             backgroundThread = new Thread(BackgroundAction);
-            backgroundRunning = true;
+            backgroundRunning = false;
             backgroundThread.Start();
         }
 
@@ -72,7 +74,7 @@ namespace HackRR2
 
         private void BackgroundAction()
         {
-            while (true)
+            while (running)
             {
                 if (!backgroundRunning || !HackSpeedOption.Checked)
                 {
@@ -82,6 +84,11 @@ namespace HackRR2
 
                 memoryAccess.HackArmy((float)AttackRangeNumber.Value, (float)AttackRateNumber.Value, (float)MoveSpeedNumber.Value);
             }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            running = false;
         }
     }
 }

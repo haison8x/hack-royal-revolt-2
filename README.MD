@@ -3,11 +3,15 @@
 This tool can hack Toxic Cloud
 - Toxic Slow Duration: 120 seconds
 
+# Note:
+
+This hack is reported to Flare Game but they don't care
+
 # Link download:
 
 https://github.com/haison8x/hack-royal-revolt-2/tree/master/Distribution
 
-# How to use this hack:
+# How to hack Toxic Slow:
 
 1. Open Royal Revolt 2
 2. Start a raid
@@ -18,6 +22,10 @@ https://github.com/haison8x/hack-royal-revolt-2/tree/master/Distribution
 6. Switch to Hack Tool and click button Stop
 7. Finish the raid
 
+# How to hack Attack Rate, Attack Range and Speed:
+
+It's not easy. Please contact me for more detail
+
 # Other hack:
 
 Other spells could be hacked too: 
@@ -26,6 +34,3 @@ Other spells could be hacked too:
 
 However, I don't have enough time and clone accounts to do all tests
 
-# Note:
-
-This hack is reported to Flare Game but they don't care
