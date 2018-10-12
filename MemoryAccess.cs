@@ -162,6 +162,63 @@ namespace HackRR2
         }
 
 
+        public void HackArmy(float range, float rate, float speed)
+        {
+            var handle = IntPtr.Zero;
+            try
+            {
+                handle = OpenProcess(ProcessAccessFlags.All, false, process.Id);
+
+                var currentAddress = ReadAddress(handle, GameOffsets.BaseArmy);
+                if (currentAddress != 0 && IsValidArmyHeader(handle, currentAddress))
+                {
+                    var armyType = ReadInt32(handle, currentAddress + 0x6C);
+                    if (armyType == 0)
+                    {
+                        WriteFloat(handle, currentAddress + 0x6AC, range);
+                        WriteFloat(handle, currentAddress + 0x6B0, rate);
+                        WriteFloat(handle, currentAddress + 0x69C, speed);
+                    }
+                    else
+                    {
+                        WriteFloat(handle, currentAddress + 0x6AC, 0.001f);
+                        WriteFloat(handle, currentAddress + 0x6B0, 0.001f);
+                        WriteFloat(handle, currentAddress + 0x69C, 0.1f);
+                    }
+                }
+            }
+            catch { }
+            finally
+            {
+                SafeCloseHandle(handle);
+            }
+        }
+
+        private bool IsValidArmyHeader(IntPtr handle, int address)
+        {
+            if (address == 0)
+            {
+                return false;
+            }
+
+            var pointer1 = ReadInt32(handle, address);
+            if (pointer1 == 0)
+            {
+                return false;
+            }
+
+            var pointer2 = ReadInt32(handle, pointer1);
+            if (pointer2 == 0)
+            {
+                return false;
+            }
+
+            var headerValue = ReadInt32(handle, pointer2 + 8);
+
+            return headerValue == 161;
+        }
+
+
         private void SafeCloseHandle(IntPtr handle)
         {
             if (handle != IntPtr.Zero)

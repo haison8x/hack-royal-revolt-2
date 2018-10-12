@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace HackRR2
@@ -9,67 +10,77 @@ namespace HackRR2
 
         private GameState hackState;
 
+        private bool backgroundRunning;
+
+        private readonly Thread backgroundThread;
+
+        private MemoryAccess memoryAccess;
+
         public MainForm()
         {
             InitializeComponent();
 
             originalState = new GameState();
             hackState = CreateHackState();
+            backgroundThread = new Thread(BackgroundAction);
+            backgroundRunning = true;
+            backgroundThread.Start();
         }
 
         private GameState CreateHackState()
         {
             var gameState = new GameState();
-            gameState.ToxicSlowDuration = 120f;           
+            gameState.ToxicSlowDuration = 120f;
             return gameState;
         }
-
-        private void RecordButtonClick(object sender, EventArgs e)
-        {
-            originalState = ReadGameState();
-
-            HackButton.Enabled = true;
-        }
-
-
 
         private void HackButtonClick(object sender, EventArgs e)
         {
             if (HackButton.Text == "Hack")
             {
-                var confirmResult = MessageBox.Show("Did you press button 'Save Original State'?",
-                                     "REMEMBER TO SAVE ORIGINAL STATE BEFORE HACKING!",
-                                     MessageBoxButtons.YesNo);
-                if (confirmResult != DialogResult.Yes)
-                {
-                    return;
-                }
+                CreateMemoryAccess();
+                ReadGameState();
             }
 
-
             var gameState = HackButton.Text == "Hack" ? hackState : originalState;
-
             WriteGameState(gameState);
 
+            backgroundRunning = HackButton.Text == "Hack";
             HackButton.Text = HackButton.Text == "Hack" ? "Stop" : "Hack";
         }
 
-        private GameState ReadGameState()
+        private void CreateMemoryAccess()
         {
-            var gameState = new GameState();
-            using (var memoryAccess = new MemoryAccess())
+            if (memoryAccess != null)
             {
-                gameState.ToxicSlowDuration = memoryAccess.ReadFloat(GameOffsets.ToxicSlowDuration);
+                memoryAccess.Dispose();
             }
 
-            return gameState;
+            memoryAccess = new MemoryAccess();
         }
 
-        private static void WriteGameState(GameState gameState)
+        private void ReadGameState()
         {
-            using (var memoryAccess = new MemoryAccess())
+            originalState = new GameState();
+            originalState.ToxicSlowDuration = memoryAccess.ReadFloat(GameOffsets.ToxicSlowDuration);
+        }
+
+        private void WriteGameState(GameState gameState)
+        {
+            memoryAccess.WriteFloat(GameOffsets.ToxicSlowDuration, gameState.ToxicSlowDuration);
+        }
+
+        private void BackgroundAction()
+        {
+            while (true)
             {
-                memoryAccess.WriteFloat(GameOffsets.ToxicSlowDuration, gameState.ToxicSlowDuration);
+                if (!backgroundRunning || !HackSpeedOption.Checked)
+                {
+                    Thread.Sleep(500);
+                    continue;
+                }
+
+                memoryAccess.HackArmy((float)AttackRangeNumber.Value, (float)AttackRateNumber.Value, (float)MoveSpeedNumber.Value);
             }
         }
     }
