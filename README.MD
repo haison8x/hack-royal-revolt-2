@@ -27,3 +27,7 @@ Other spells could be hacked too:
 - Pals spells: Archimedes Stun, Howl, Eldrak Fire Storm, .... 
 
 However, I don't have enough time and clone accounts to do all tests
+
+# Note:
+
+This hack is reported to Flare Game but they don't care

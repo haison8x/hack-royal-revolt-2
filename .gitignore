@@ -49,3 +49,6 @@ Sources/Sites/app/*concat.js
 /src/UniversalReports.Sites/App_Data/user-activity*.json
 **/package-lock.json
 *.csproj.user
+/Distribution/HackRR2.exe.config
+/Distribution/RR2.ico
+/Distribution/System.Net.Http.dll
