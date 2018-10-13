@@ -33,6 +33,7 @@ namespace HackRR2
         {
             var gameState = new GameState();
             gameState.ToxicSlowDuration = 120f;
+            gameState.SwordRainStunDuration = 120f;
             return gameState;
         }
 
@@ -65,11 +66,13 @@ namespace HackRR2
         {
             originalState = new GameState();
             originalState.ToxicSlowDuration = memoryAccess.ReadFloat(GameOffsets.ToxicSlowDuration);
+            originalState.SwordRainStunDuration= memoryAccess.ReadFloat(GameOffsets.SwordRainStunDuration);
         }
 
         private void WriteGameState(GameState gameState)
         {
             memoryAccess.WriteFloat(GameOffsets.ToxicSlowDuration, gameState.ToxicSlowDuration);
+            memoryAccess.WriteFloat(GameOffsets.SwordRainStunDuration, gameState.SwordRainStunDuration);
         }
 
         private void BackgroundAction()
