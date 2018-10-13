@@ -2,11 +2,8 @@
 {
     public class GameState
     {
-        public GameState()
-        {           
-            ToxicSlowDuration = 0;
-        }
-     
         public float ToxicSlowDuration { get; set; }
+
+        public float SwordRainStunDuration { get; set; }
     }
 }
