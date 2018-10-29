@@ -66,7 +66,7 @@ namespace HackRR2
         {
             originalState = new GameState();
             originalState.ToxicSlowDuration = memoryAccess.ReadFloat(GameOffsets.ToxicSlowDuration);
-            originalState.SwordRainStunDuration= memoryAccess.ReadFloat(GameOffsets.SwordRainStunDuration);
+            originalState.SwordRainStunDuration = memoryAccess.ReadFloat(GameOffsets.SwordRainStunDuration);
         }
 
         private void WriteGameState(GameState gameState)
@@ -77,16 +77,16 @@ namespace HackRR2
 
         private void BackgroundAction()
         {
-            while (running)
-            {
-                if (!backgroundRunning || !HackSpeedOption.Checked)
-                {
-                    Thread.Sleep(500);
-                    continue;
-                }
+            //while (running)
+            //{
+            //    if (!backgroundRunning || !HackSpeedOption.Checked)
+            //    {
+            //        Thread.Sleep(500);
+            //        continue;
+            //    }
 
-                memoryAccess.HackArmy((float)AttackRangeNumber.Value, (float)AttackRateNumber.Value, (float)MoveSpeedNumber.Value);
-            }
+            //    memoryAccess.HackArmy((float)AttackRangeNumber.Value, (float)AttackRateNumber.Value, (float)MoveSpeedNumber.Value);
+            //}
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

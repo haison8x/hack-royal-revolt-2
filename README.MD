@@ -10,7 +10,7 @@ This hack is reported to Flare Game but they don't care
 
 # Link download:
 
-https://github.com/haison8x/hack-royal-revolt-2/releases/download/version.4.2.2/HackRR2.zip
+https://github.com/haison8x/hack-royal-revolt-2/releases/download/version.4.3.0/HackRR2.zip
 
 # How to hack Toxic Slow:
 
